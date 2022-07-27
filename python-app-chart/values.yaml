@@ -1,0 +1,15 @@
+kind: Deployment
+
+pythonDeployName: python-app
+pythonImage: eu.gcr.io/mostafa-alnaggar-project/python-app:latest
+pytonContainerPort: 8000
+pythonSVC: python-app-svc
+pythonSvcType: NodePort
+
+replicas: 1
+
+redisDeployName: redis-python-app
+redisImage: eu.gcr.io/mostafa-alnaggar-project/redis:latest
+redisPort: 6379
+redisHost: redis
+redisSVC: redis

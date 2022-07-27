@@ -1,0 +1,23 @@
+#  To define base image
+FROM python:3.7-alpine3.15
+
+#To define project dir
+WORKDIR /app
+
+#  To install requirements
+RUN pip install redis
+RUN pip install tornado
+
+#  To copy project files
+COPY . .
+
+#  To export EVN VAR
+ENV ENVIRONMENT=DEV
+ENV HOST=localhost
+ENV PORT=8000
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
+ENV REDIS_DB=0
+
+#  To run python app
+CMD [ "python3", "hello.py" ]

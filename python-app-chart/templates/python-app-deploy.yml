@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: {{ .Values.kind }}
+
+metadata:
+  name: {{ .Values.pythonDeployName }}
+
+spec:
+  replicas: {{ .Values.replicas }}
+
+  selector:
+    matchLabels:
+      app: {{ .Values.pythonDeployName }}
+
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.pythonDeployName }}
+
+    spec:
+      containers:
+      - name: {{ $.Release.Name }}-python-container
+        image: {{ .Values.pythonImage }}
+        
+        env:
+        - name: REDIS_PORT
+          value: "6379"
+        - name: REDIS_HOST
+          value: {{ .Values.redisSVC }}
+        
+        ports:
+          - containerPort: {{ .Values.pytonContainerPort }}

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: {{ .Values.redisSVC }}
+
+spec:
+  
+  selector:
+    app: {{ .Values.redisDeployName }}
+  
+  ports:
+    - port: {{ .Values.redisPort }}
+      targetPort: {{ .Values.redisPort }}
+    
+  
+
